@@ -13,6 +13,9 @@ import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+import com.dw.shooter.ecs.system.RenderSystem;
 import com.dw.shooter.screen.ScreenType;
 import com.dw.shooter.util.Logger;
 
@@ -23,8 +26,8 @@ public class ArcadeShooter extends Game {
 
     public static final float UNIT_SCALE= 1/16f;
     private EnumMap<ScreenType, Screen> screenCache;
-    private Batch batch;
-
+    private SpriteBatch batch;
+    private Viewport gameViewport;
     private Engine engine;
     private Entity player;
 
@@ -33,8 +36,11 @@ public class ArcadeShooter extends Game {
         Box2D.init();
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         engine = new PooledEngine();
-        screenCache = new EnumMap<ScreenType, Screen>(ScreenType.class);
+        gameViewport = new FitViewport(9f, 16f);
         batch = new SpriteBatch();
+        engine.addSystem(new RenderSystem(batch, gameViewport));
+
+        screenCache = new EnumMap<ScreenType, Screen>(ScreenType.class);
         setScreen(ScreenType.First);
     }
 
@@ -75,5 +81,9 @@ public class ArcadeShooter extends Game {
 
     public Engine getEngine() {
         return engine;
+    }
+
+    public Viewport getGameViewport() {
+        return gameViewport;
     }
 }

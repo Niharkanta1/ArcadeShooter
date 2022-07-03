@@ -12,17 +12,19 @@ import com.badlogic.gdx.utils.Pool;
  * @project ArcadeShooter
  */
 public class TransformComponent implements Pool.Poolable, Component {
-    public static final ComponentMapper<TransformComponent> Map = ComponentMapper.getFor(TransformComponent.class);
+    public static final ComponentMapper<TransformComponent> Mapper = ComponentMapper.getFor(TransformComponent.class);
 
     public Vector3 position = new Vector3();
-    public Vector2 size = new Vector2(1f, 1f);
-    public float rotationDeg = 0f;
+    public Vector2 scale = new Vector2(1.0f, 1.0f);
+    public float rotationDeg = 0.0f;
+    public boolean isHidden = false;
 
     @Override
     public void reset() {
         position.set(Vector3.Zero);
-        size.set(1f, 1f);
-        rotationDeg = 0f;
+        scale.set(1.0f, 1.0f);
+        rotationDeg = 0.0f;
+        isHidden = false;
     }
 
 }

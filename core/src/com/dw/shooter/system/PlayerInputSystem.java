@@ -1,4 +1,4 @@
-package com.dw.shooter.ecs.system;
+package com.dw.shooter.system;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -6,9 +6,9 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.dw.shooter.ecs.component.FacingComponent;
-import com.dw.shooter.ecs.component.PlayerComponent;
-import com.dw.shooter.ecs.component.TransformComponent;
+import com.dw.shooter.component.FacingComponent;
+import com.dw.shooter.component.PlayerComponent;
+import com.dw.shooter.component.TransformComponent;
 import com.dw.shooter.enums.FacingDirection;
 import com.dw.shooter.util.Logger;
 

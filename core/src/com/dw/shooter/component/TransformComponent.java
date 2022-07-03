@@ -1,4 +1,4 @@
-package com.dw.shooter.ecs.component;
+package com.dw.shooter.component;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
@@ -15,6 +15,8 @@ public class TransformComponent implements Pool.Poolable, Component {
     public static final ComponentMapper<TransformComponent> Mapper = ComponentMapper.getFor(TransformComponent.class);
 
     public Vector3 position = new Vector3();
+    public Vector3 prevPosition = new Vector3();
+    public Vector3 interpolatedPosition = new Vector3();
     public Vector2 scale = new Vector2(1.0f, 1.0f);
     public float rotationDeg = 0.0f;
     public boolean isHidden = false;
@@ -22,6 +24,8 @@ public class TransformComponent implements Pool.Poolable, Component {
     @Override
     public void reset() {
         position.set(Vector3.Zero);
+        prevPosition.set(Vector3.Zero);
+        interpolatedPosition.set(Vector3.Zero);
         scale.set(1.0f, 1.0f);
         rotationDeg = 0.0f;
         isHidden = false;

@@ -4,11 +4,8 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.dw.shooter.ArcadeShooter;
-import com.dw.shooter.ecs.component.FacingComponent;
-import com.dw.shooter.ecs.component.GraphicsComponent;
-import com.dw.shooter.ecs.component.PlayerComponent;
-import com.dw.shooter.ecs.component.TransformComponent;
+import com.dw.shooter.MainGame;
+import com.dw.shooter.component.*;
 import com.dw.shooter.util.Logger;
 
 /**
@@ -19,10 +16,12 @@ import com.dw.shooter.util.Logger;
 public class GameScreen extends AbstractScreen {
     private Logger log = Logger.getInstance(this.getClass());
 
+    public static final float MAX_DELTA_TIME = 1/20f;
+
     private Texture texture;
     private Entity player;
 
-    public GameScreen(ArcadeShooter context) {
+    public GameScreen(MainGame context) {
         super(context);
     }
 
@@ -36,15 +35,17 @@ public class GameScreen extends AbstractScreen {
         GraphicsComponent graphics = engine.createComponent(GraphicsComponent.class);
         PlayerComponent playerComponent = engine.createComponent(PlayerComponent.class);
         FacingComponent facingComponent = engine.createComponent(FacingComponent.class);
+        MoveComponent moveComponent = engine.createComponent(MoveComponent.class);
 
         // Create Player Data
-        transform.position.set(1f, 1f, 0f);
+        transform.position.set(4.5f, 8f, 0f);
 
         // Add the components to the Entity
         player.add(transform);
         player.add(graphics);
         player.add(playerComponent);
         player.add(facingComponent);
+        player.add(moveComponent);
 
         // Add entity to the Engine
         engine.addEntity(player);
@@ -55,7 +56,7 @@ public class GameScreen extends AbstractScreen {
         Gdx.gl.glClearColor( 0, 0, 0, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT );
         // Update the Engine, all the systems in the engine
-        engine.update(delta);
+        engine.update(Math.min(MAX_DELTA_TIME, delta));
     }
 
     @Override

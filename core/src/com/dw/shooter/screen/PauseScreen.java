@@ -1,6 +1,6 @@
 package com.dw.shooter.screen;
 
-import com.dw.shooter.ArcadeShooter;
+import com.dw.shooter.MainGame;
 
 /**
  * @author nihar
@@ -10,7 +10,7 @@ import com.dw.shooter.ArcadeShooter;
 public class PauseScreen extends AbstractScreen {
     public static final String TAG = PauseScreen.class.getSimpleName();
 
-    public PauseScreen(ArcadeShooter context) {
+    public PauseScreen(MainGame context) {
         super(context);
     }
 

@@ -11,6 +11,6 @@ public class DesktopLauncher {
 		config.setTitle("ArcadeShooter");
 		config.setWindowedMode(9 * 32, 16 * 32);
 		config.setWindowIcon("graphics/window-icon.png");
-		new Lwjgl3Application(new ArcadeShooter(), config);
+		new Lwjgl3Application(new MainGame(), config);
 	}
 }

@@ -6,7 +6,6 @@ package com.dw.shooter.screen;
  * @project ArcadeShooter
  */
 public enum ScreenType {
-    First(FirstScreen.class),
     Game(GameScreen.class),
     Loading(LoadingScreen.class),
     Menu(MenuScreen.class),

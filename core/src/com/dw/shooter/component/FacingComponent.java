@@ -1,4 +1,4 @@
-package com.dw.shooter.ecs.component;
+package com.dw.shooter.component;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;

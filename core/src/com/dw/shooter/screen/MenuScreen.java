@@ -1,6 +1,6 @@
 package com.dw.shooter.screen;
 
-import com.dw.shooter.ArcadeShooter;
+import com.dw.shooter.MainGame;
 
 /**
  * @author nihar
@@ -10,7 +10,7 @@ import com.dw.shooter.ArcadeShooter;
 public class MenuScreen extends AbstractScreen {
     public static final String TAG = MenuScreen.class.getSimpleName();
 
-    public MenuScreen(ArcadeShooter context) {
+    public MenuScreen(MainGame context) {
         super(context);
     }
 

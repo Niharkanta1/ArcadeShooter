@@ -1,12 +1,12 @@
-package com.dw.shooter.ecs.system;
+package com.dw.shooter.system;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.SortedIteratingSystem;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.dw.shooter.ecs.component.GraphicsComponent;
-import com.dw.shooter.ecs.component.TransformComponent;
+import com.dw.shooter.component.GraphicsComponent;
+import com.dw.shooter.component.TransformComponent;
 import com.dw.shooter.util.Logger;
 import com.dw.shooter.util.ZComparator;
 
@@ -50,7 +50,7 @@ public class RenderSystem extends SortedIteratingSystem {
             return;
         }
         graphics.sprite.rotate(transform.rotationDeg);
-        graphics.sprite.setBounds(transform.position.x, transform.position.y, transform.scale.x, transform.scale.y);
+        graphics.sprite.setBounds(transform.interpolatedPosition.x, transform.interpolatedPosition.y, transform.scale.x, transform.scale.y);
         graphics.sprite.draw(batch);
     }
 }

@@ -1,6 +1,9 @@
 package com.dw.shooter.screen;
 
-import com.dw.shooter.ArcadeShooter;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.dw.shooter.MainGame;
+import com.dw.shooter.util.Logger;
 
 /**
  * @author nihar
@@ -8,20 +11,23 @@ import com.dw.shooter.ArcadeShooter;
  * @project ArcadeShooter
  */
 public class LoadingScreen extends AbstractScreen {
-    public static final String TAG = LoadingScreen.class.getSimpleName();
+    private Logger log = Logger.getInstance(this.getClass());
 
-    public LoadingScreen(ArcadeShooter context) {
+    public LoadingScreen(MainGame context) {
         super(context);
     }
 
     @Override
     public void show() {
-
+        log.info("Loading...");
     }
 
     @Override
     public void render(float delta) {
-
+        if(Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            log.info("Button Pressed.");
+            context.setScreen(ScreenType.Game);
+        }
     }
 
     @Override

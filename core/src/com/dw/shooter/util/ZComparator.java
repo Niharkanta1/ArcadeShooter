@@ -1,7 +1,7 @@
 package com.dw.shooter.util;
 
 import com.badlogic.ashley.core.Entity;
-import com.dw.shooter.ecs.component.TransformComponent;
+import com.dw.shooter.component.TransformComponent;
 
 import java.util.Comparator;
 

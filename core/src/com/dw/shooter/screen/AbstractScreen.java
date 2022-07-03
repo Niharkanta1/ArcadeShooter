@@ -4,7 +4,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.dw.shooter.ArcadeShooter;
+import com.dw.shooter.MainGame;
 
 /**
  * @author nihar
@@ -12,12 +12,12 @@ import com.dw.shooter.ArcadeShooter;
  * @project ArcadeShooter
  */
 public abstract class AbstractScreen implements Screen {
-    protected final ArcadeShooter context;
+    protected final MainGame context;
     protected final Batch batch;
     protected final Engine engine;
     protected final Viewport gameViewport;
 
-    protected AbstractScreen(ArcadeShooter context) {
+    protected AbstractScreen(MainGame context) {
         this.context = context;
         this.batch = context.getBatch();
         this.engine = context.getEngine();

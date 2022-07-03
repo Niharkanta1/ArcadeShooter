@@ -15,18 +15,19 @@ import com.badlogic.gdx.utils.reflect.ClassReflection;
 import com.badlogic.gdx.utils.reflect.ReflectionException;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.dw.shooter.ecs.system.PlayerAnimationSystem;
-import com.dw.shooter.ecs.system.PlayerInputSystem;
-import com.dw.shooter.ecs.system.RenderSystem;
 import com.dw.shooter.screen.ScreenType;
+import com.dw.shooter.system.*;
 import com.dw.shooter.util.Logger;
 
 import java.util.EnumMap;
 
-public class ArcadeShooter extends Game {
+public class MainGame extends Game {
     private Logger log = Logger.getInstance(this.getClass());
 
     public static final float UNIT_SCALE= 1/16f;
+    public static final float V_WIDTH = 9f;
+    public static final float V_HEIGHT = 16f;
+
     private EnumMap<ScreenType, Screen> screenCache;
     private SpriteBatch batch;
     private Viewport gameViewport;
@@ -38,21 +39,23 @@ public class ArcadeShooter extends Game {
         Box2D.init();
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
         engine = new PooledEngine();
-        gameViewport = new FitViewport(9f, 16f);
+        gameViewport = new FitViewport(V_WIDTH, V_HEIGHT);
         batch = new SpriteBatch();
 
         atlas = new TextureAtlas(Gdx.files.internal("graphics/graphics.atlas"));
 
         // Adding different Systems. The order determines the priority unless explicitly set priority.
         engine.addSystem(new PlayerInputSystem(gameViewport));
+        engine.addSystem(new MoveSystem());
         engine.addSystem(new PlayerAnimationSystem(
                 atlas.findRegion("ship_base"),
                 atlas.findRegion("ship_left"),
                 atlas.findRegion("ship_right")));
         engine.addSystem(new RenderSystem(batch, gameViewport));
+        engine.addSystem(new DebugSystem());
 
         screenCache = new EnumMap<ScreenType, Screen>(ScreenType.class);
-        setScreen(ScreenType.First);
+        setScreen(ScreenType.Loading);
     }
 
     @Override
@@ -74,7 +77,7 @@ public class ArcadeShooter extends Game {
             try {
                 log.info("Creating new screen", screenType);
                 final Screen newScreen = (Screen) ClassReflection.getConstructor(screenType.getScreenClass(),
-                        ArcadeShooter.class).newInstance(this);
+                        MainGame.class).newInstance(this);
                 screenCache.put(screenType, newScreen);
                 setScreen(newScreen);
             } catch (ReflectionException e) {

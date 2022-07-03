@@ -1,4 +1,4 @@
-package com.dw.shooter.ecs.component;
+package com.dw.shooter.component;
 
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Pool;
 
-import static com.dw.shooter.ArcadeShooter.UNIT_SCALE;
+import static com.dw.shooter.MainGame.UNIT_SCALE;
 
 /**
  * @author nihar

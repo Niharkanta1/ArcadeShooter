@@ -14,7 +14,7 @@ public class ZComparator implements Comparator<Entity> {
 
     @Override
     public int compare(Entity e1, Entity e2) {
-        float zDiff = TransformComponent.Mapper.get(e1).position.z - TransformComponent.Mapper.get(e1).position.z;
-        return (int) (zDiff == 0 ? TransformComponent.Mapper.get(e1).position.y - TransformComponent.Mapper.get(e1).position.y : zDiff);
+        float zDiff = Float.compare(TransformComponent.Mapper.get(e1).position.z, TransformComponent.Mapper.get(e1).position.z);
+        return zDiff == 0 ?  Float.compare(TransformComponent.Mapper.get(e1).position.y, TransformComponent.Mapper.get(e1).position.y): (int) zDiff;
     }
 }
